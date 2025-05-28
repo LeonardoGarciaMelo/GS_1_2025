@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Alert } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
 import { RootStackParamList, RecordType } from '../../App';
@@ -18,11 +18,18 @@ export default function InputScreen({ navigation }: Props) {
   const handleAnalyze = async () => {
     const humidityValue = parseFloat(humidity);
     const slopeValue = parseFloat(slope);
+
+    if (isNaN(humidityValue) || isNaN(slopeValue)) {
+      Alert.alert('Erro', 'Por favor, insira apenas valores numéricos.');
+      return;
+    }
+
     const risk = analyzeRisk(humidityValue, slopeValue);
+    Alert.alert('Análise de Risco', `Risco: ${risk}`);
 
     const record: RecordType = {
-      humidity,
-      slope,
+      humidity: humidityValue,
+      slope: slopeValue,
       risk,
       date: new Date().toLocaleString(),
     };
@@ -37,14 +44,14 @@ export default function InputScreen({ navigation }: Props) {
         placeholder="Umidade (%)"
         keyboardType="numeric"
         value={humidity}
-        onChangeText={setHumidity}
+        onChangeText={(text) => setHumidity(text.replace(/[^0-9.]/g, ''))}
         style={styles.input}
       />
       <TextInput
         placeholder="Inclinação (°)"
         keyboardType="numeric"
         value={slope}
-        onChangeText={setSlope}
+        onChangeText={(text) => setSlope(text.replace(/[^0-9.]/g, ''))}
         style={styles.input}
       />
       <Button title="Analisar Risco" onPress={handleAnalyze} />

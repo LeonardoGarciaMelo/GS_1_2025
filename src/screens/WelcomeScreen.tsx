@@ -1,22 +1,37 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../../App';
+import { RootStackParamList } from '../types/navigation';
+
+type WelcomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Welcome'>;
 
 type Props = {
-  navigation: StackNavigationProp<RootStackParamList, 'Welcome'>;
+  navigation: WelcomeScreenNavigationProp;
 };
 
-export default function WelcomeScreen({ navigation }: Props) {
+const WelcomeScreen: React.FC<Props> = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Monitoramento de Riscos</Text>
-      <Button title="Começar" onPress={() => navigation.navigate('Input')} />
+      <Text style={styles.title}>Bem-vindo ao Monitor de Deslizamentos</Text>
+
+      <Button title="Inserir Dados Ambientais" onPress={() => navigation.navigate('Input')} />
+      <Button title="Histórico de Monitoramento" onPress={() => navigation.navigate('History')} />
+      <Button title="Ações de Mitigação" onPress={() => navigation.navigate('Actions')} />
     </View>
   );
-}
+};
+
+export default WelcomeScreen;
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  title: { fontSize: 24, fontWeight: 'bold' },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 20,
+  },
+  title: {
+    fontSize: 24,
+    marginBottom: 20,
+    textAlign: 'center',
+  },
 });

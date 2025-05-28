@@ -7,24 +7,11 @@ import RiskScreen from './src/screens/RiskScreen';
 import HistoryScreen from './src/screens/HistoryScreen';
 import ActionsScreen from './src/screens/ActionsScreen';
 
-export type RootStackParamList = {
-  Welcome: undefined;
-  Input: undefined;
-  Risk: { record: RecordType };
-  History: undefined;
-  Actions: undefined;
-};
-
-export type RecordType = {
-  humidity: string;
-  slope: string;
-  risk: string;
-  date: string;
-};
+import { RootStackParamList } from './src/types/navigation';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
-export default function App() {
+const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Welcome">
@@ -36,4 +23,6 @@ export default function App() {
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
+};
+
+export default App;
