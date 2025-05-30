@@ -14,9 +14,9 @@ export default function RiskScreen({ route, navigation }: Props) {
 
   const getRiskColor = () => {
     switch(record.risk.toLowerCase()) {
-      case 'alto': return '#e74c3c';
-      case 'médio': return '#f39c12';
-      case 'baixo': return '#2ecc71';
+      case 'alto risco': return '#e74c3c';
+      case 'médio risco': return '#f39c12';
+      case 'baixo risco': return '#2ecc71';
       default: return '#3498db';
     }
   };
