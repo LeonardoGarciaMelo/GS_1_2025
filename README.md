@@ -2,7 +2,7 @@
 
 ## Integrantes
 - Nome: Guilherme Moraes Pagani  Rm: 99445
-- Nome: Gustavo Conceição        Rm: 551595
+- Nome: Gustavo Conceição Della Rocca       Rm: 551595
 - Nome: Leonardo Garcia Melo     Rm: 99471
 
 ## Descrição
